@@ -1,0 +1,21 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "name": "myblob",
+      "type": "blobTrigger",
+      "direction": "in",
+      "path": "demo/{name}",
+      "connection": "origin_STORAGE",
+      "dataType": "binary"
+    },
+    {
+      "type": "blob",
+      "direction": "out",
+      "name": "outputBlob",
+      "path": "gangoghdemo/{name}",
+      "connection": "AzureWebJobsStorage",
+      "dataType": "binary"
+    }
+  ]
+}
