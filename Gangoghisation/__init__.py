@@ -38,7 +38,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             "initImage":filename,
             "phrase":"a portrait painting by van gogh",
             "model":"wikiart",
-            "iterations":25,
+            "iterations":16,
             "size":[500, 500]
         }
 
@@ -46,9 +46,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         json=jsontosend)
         ret=""
         if(resp.ok):
-
             newurl = simplegen_sas_token(filename)["url"]
             ret=newurl
+        elif(resp.status_code==418):
+            ret=resp.text
         else:
             ret=resp.reason
         return func.HttpResponse(body=ret,status_code=resp.status_code)
